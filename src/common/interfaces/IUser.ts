@@ -3,5 +3,6 @@ export interface IUser {
   name: string;
   avatar: string;
   company_name: string;
+  job_title: string;
   id: string;
 }

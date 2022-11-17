@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import User from "./components/User.vue";
+import { ref } from "vue";
+import PostList from "./components/Posts/PostList.vue";
+import Loading from "./components/Shared/Loading.vue";
 </script>
 
 <template>
   <Suspense>
-    <User />
+    <template #fallback>
+      <Loading />
+    </template>
+    <PostList />
   </Suspense>
 </template>
 
