@@ -12,7 +12,7 @@ try {
       const response = await (await fetch(`${http.BASE_URL}/post`)).json();
       posts.value = response;
       resolve(true);
-    }, 1000);
+    }, 100);
   });
 } catch (e) {
   console.error({ e });

@@ -45,15 +45,15 @@ const postDate = computed(() =>
       </div>
       <div
         class="comments px-16 hover:cursor-pointer"
-        @click="showComments = true"
+        @click="$router.push(`/post/${post.id}`)"
       >
         Comments
       </div>
-      <CommentList
+      <!-- <CommentList
         :open="showComments"
         @close="showComments = false"
         :postId="post.id"
-      />
+      /> -->
     </div>
   </div>
 </template>

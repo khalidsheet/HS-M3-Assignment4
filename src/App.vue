@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import PostList from "./components/Posts/PostList.vue";
 import Loading from "./components/Shared/Loading.vue";
 </script>
 
@@ -9,7 +7,7 @@ import Loading from "./components/Shared/Loading.vue";
     <template #fallback>
       <Loading />
     </template>
-    <PostList />
+    <router-view></router-view>
   </Suspense>
 </template>
 

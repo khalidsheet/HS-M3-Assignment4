@@ -11,18 +11,23 @@ import http from "../../common/http";
 import { IComment } from "../../common/interfaces";
 import CommentDetails from "./CommentDetails.vue";
 
-const props = defineProps<{ open: boolean; postId: string }>();
+const props = defineProps<{ open?: boolean; postId?: string; id?: string }>();
+const endpoint = ref(`${http.BASE_URL}/post/`);
 
 const postComments = ref<IComment[]>([]);
 
+if (props.id != undefined) {
+  endpoint.value += `${props.id}/comment`;
+} else {
+  endpoint.value += `${props.postId}/comment`;
+}
+
 // get post comments
-postComments.value = await (
-  await fetch(`${http.BASE_URL}/post/${props.postId}/comment`)
-).json();
+postComments.value = await (await fetch(endpoint.value)).json();
 </script>
 
 <template>
-  <TransitionRoot as="template" :show="open">
+  <TransitionRoot as="template" :show="open == true || props.id != undefined">
     <Dialog as="div" class="relative z-10" @close="$emit('close')">
       <TransitionChild
         as="template"
@@ -78,7 +83,7 @@ postComments.value = await (
                 <button
                   type="button"
                   class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                  @click="$emit('close')"
+                  @click="$router.back()"
                   ref="cancelButtonRef"
                 >
                   Cancel

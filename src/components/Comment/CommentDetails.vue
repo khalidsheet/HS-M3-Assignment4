@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IComment } from "../../common/interfaces";
 
-defineProps<{ comment: IComment }>();
+defineProps<{ comment?: IComment }>();
 </script>
 
 <template>
@@ -9,10 +9,10 @@ defineProps<{ comment: IComment }>();
     <div class="w-full">
       <dl class="w-full py-2">
         <dt class="text-md font-medium text-gray-400 w-full">
-          {{ comment.user }}
+          {{ comment?.user }}
         </dt>
         <dt class="text-sm font-light text-gray-600 w-full">
-          {{ comment.text }}
+          {{ comment?.text }}
         </dt>
       </dl>
     </div>
